@@ -1,0 +1,44 @@
+{% if fieldset_id is defined and checkboxes is defined and checkboxes is not empty %}
+    <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="{{ fieldset_id }}-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+                    {{ heading }}
+                </h1>
+            </legend>
+            {% if hint is defined %}
+                <div id="{{ fieldset_id }}-hint" class="govuk-hint">
+                    {{ hint }}
+                </div>
+            {% endif %}
+            <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                {% for checkbox in checkboxes %}
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" id="{{ fieldset_id }}-{{ loop.index }}" name="{{ checkbox.name | default(fieldset_id) }}" type="checkbox" value="{{ checkbox.value }}">
+                        <label class="govuk-label govuk-checkboxes__label" for="{{ fieldset_id }}-{{ loop.index }}">
+                            {{ checkbox.label }}
+                        </label>
+                    </div>
+                {% endfor %}
+            </div>
+        </fieldset>
+    </div>
+{% endif %}
+
+{# Usage
+{% set fieldset_id = 'waste' %}
+{% set heading = 'Which types of waste do you transport?' %}
+{% set hint = 'Select all that apply.' %}
+{% set checkboxes = [
+    { label: 'Waste from animal carcasses', value: 'carcasses' },
+    { label: 'Waste from mines or quarries', value: 'mines' },
+    { label: 'Farm or agricultural waste', value: 'farm' }
+] %}
+
+{% include 'partial/gds/checkbox_group.twig' with { 
+    'fieldset_id': fieldset_id,
+    'heading': heading,
+    'hint': hint,
+    'checkboxes': checkboxes
+} %}
+#}

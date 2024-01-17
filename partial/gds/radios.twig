@@ -1,0 +1,36 @@
+{% if legend is defined and options is defined and options is not empty %}
+    <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+                    {{ legend }}
+                </h1>
+            </legend>
+            <div class="govuk-radios" data-module="govuk-radios">
+                {% for option in options %}
+                    <div class="govuk-radios__item">
+                        <input class="govuk-radios__input" id="{{ option.id }}" name="{{ option.name }}" type="radio" value="{{ option.value }}">
+                        <label class="govuk-label govuk-radios__label" for="{{ option.id }}">
+                            {{ option.label }}
+                        </label>
+                    </div>
+                {% endfor %}
+            </div>
+        </fieldset>
+    </div>
+{% endif %}
+
+{# Usage
+{% set legend = 'Where do you live?' %}
+{% set options = [
+    { id: 'whereDoYouLive', name: 'whereDoYouLive', value: 'england', label: 'England' },
+    { id: 'whereDoYouLive-2', name: 'whereDoYouLive', value: 'scotland', label: 'Scotland' },
+    { id: 'whereDoYouLive-3', name: 'whereDoYouLive', value: 'wales', label: 'Wales' },
+    { id: 'whereDoYouLive-4', name: 'whereDoYouLive', value: 'northern-ireland', label: 'Northern Ireland' }
+] %}
+
+{% include 'partial/gds/radios.twig' with { 
+    'legend': legend,
+    'options': options
+} %}
+#}

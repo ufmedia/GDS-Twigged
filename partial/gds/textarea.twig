@@ -1,0 +1,22 @@
+<div class="govuk-form-group">
+    <h1 class="govuk-label-wrapper">
+        <label class="govuk-label govuk-label--l" for="{{ inputId }}">
+            {{ label }}
+        </label>
+    </h1>
+    <div id="{{ hintId }}" class="govuk-hint">
+        {{ hint }}
+    </div>
+    <textarea class="govuk-textarea" id="{{ inputId }}" name="{{ inputName }}" rows="{{ rows }}" aria-describedby="{{ hintId }}"></textarea>
+</div>
+
+{# Usage
+{% include 'partial/gds/textarea.twig' with { 
+    'inputId': 'more-detail',
+    'label': 'Can you provide more detail?',
+    'hintId': 'more-detail-hint',
+    'hint': 'Do not include personal or financial information, like your National Insurance number or credit card details.',
+    'inputName': 'moreDetail',
+    'rows': 5
+} %}
+#}

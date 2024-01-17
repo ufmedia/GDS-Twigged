@@ -1,0 +1,13 @@
+{% if text_content is defined %}
+    <div class="govuk-inset-text">
+        {{ text_content }}
+    </div>
+{% endif %}
+
+{# Usage
+{% set text_content = 'It can take up to 8 weeks to register a lasting power of attorney if there are no mistakes in the application.' %}
+
+{% include 'partial/gds/inset-text.twig' with { 
+    'text_content': text_content
+} %}
+#}

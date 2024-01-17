@@ -1,0 +1,92 @@
+{% if tabs is defined and tabs is not empty %}
+    <div class="govuk-tabs" data-module="govuk-tabs">
+        <h2 class="govuk-tabs__title">
+            Contents
+        </h2>
+        <ul class="govuk-tabs__list">
+            {% for tab in tabs %}
+                <li class="govuk-tabs__list-item {{ tab.selected ? 'govuk-tabs__list-item--selected' : '' }}">
+                    <a class="govuk-tabs__tab" href="{{ tab.href }}">
+                        {{ tab.title }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+        {% for tab in tabs %}
+            <div class="govuk-tabs__panel {{ tab.selected ? '' : 'govuk-tabs__panel--hidden' }}" id="{{ tab.id }}">
+                <h2 class="govuk-heading-l">{{ tab.panel.title }}</h2>
+                {% if tab.panel.tables is defined %}
+                    {% for table in tab.panel.tables %}
+                        <table class="govuk-table">
+                            <thead class="govuk-table__head">
+                                <tr class="govuk-table__row">
+                                    {% for header in table.headers %}
+                                        <th scope="col" class="govuk-table__header">{{ header }}</th>
+                                    {% endfor %}
+                                </tr>
+                            </thead>
+                            <tbody class="govuk-table__body">
+                                {% for row in table.rows %}
+                                    <tr class="govuk-table__row">
+                                        {% for cell in row %}
+                                            <td class="govuk-table__cell">{{ cell }}</td>
+                                        {% endfor %}
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{# Usage
+{% set tabs = [
+    {
+        title: 'Past day',
+        href: '#past-day',
+        selected: true,
+        id: 'past-day',
+        panel: {
+            title: 'Past day',
+            tables: [
+                {
+                    headers: ['Case manager', 'Cases opened', 'Cases closed'],
+                    rows: [
+                        ['David Francis', '3', '0'],
+                        ['Paul Farmer', '1', '0'],
+                        ['Rita Patel', '2', '0']
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        title: 'Past week',
+        href: '#past-week',
+        selected: false,
+        id: 'past-week',
+        panel: {
+            title: 'Past week',
+            tables: [
+                {
+                    headers: ['Case manager', 'Cases opened', 'Cases closed'],
+                    rows: [
+                        ['David Francis', '24', '18'],
+                        ['Paul Farmer', '16', '20'],
+                        ['Rita Patel', '24', '27']
+                    ]
+                }
+            ]
+        }
+    }
+    # ... more tabs as needed
+] %}
+
+{% include 'partial/gds/tabs.twig' with { 
+    'tabs': tabs
+} %}
+
+#}

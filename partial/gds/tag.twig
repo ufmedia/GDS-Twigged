@@ -1,0 +1,13 @@
+{% if tag_text is defined %}
+    <strong class="govuk-tag">
+        {{ tag_text }}
+    </strong>
+{% endif %}
+
+{# Usage
+{% set tag_text = 'Completed' %}
+
+{% include 'partial/gds/status_tag.twig' with { 
+    'tag_text': tag_text
+} %}
+#}

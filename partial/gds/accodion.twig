@@ -1,0 +1,31 @@
+{% if sections is defined and sections is not empty %}
+    <div class="govuk-accordion" data-module="govuk-accordion" id="{{ accordion_id | default('accordion-default') }}">
+        {% for section in sections %}
+            <div class="govuk-accordion__section">
+                <div class="govuk-accordion__section-header">
+                    <h2 class="govuk-accordion__section-heading">
+                        <span class="govuk-accordion__section-button" id="{{ accordion_id | default('accordion-default') }}-heading-{{ loop.index }}">
+                            {{ section.heading }}
+                        </span>
+                    </h2>
+                </div>
+                <div id="{{ accordion_id | default('accordion-default') }}-content-{{ loop.index }}" class="govuk-accordion__section-content" aria-labelledby="{{ accordion_id | default('accordion-default') }}-heading-{{ loop.index }}">
+                    <p class="govuk-body">
+                        {{ section.content | raw }}
+                    </p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{# Usage
+{% set sections = [
+    { heading: 'Writing well for the web', content: 'This is the content for Writing well for the web.' },
+    { heading: 'Writing well for specialists', content: 'This is the content for Writing well for specialists.' },
+    { heading: 'Know your audience', content: 'This is the content for Know your audience.' },
+    { heading: 'How people read', content: 'This is the content for How people read.' }
+] %}
+
+{% include 'partial/gds/accordion.twig' with { 'sections': sections, 'accordion_id': 'custom-accordion-id' } %}
+#}

@@ -1,0 +1,19 @@
+{% if button_text is defined %}
+    <button type="{{ button_type | default('submit') }}" class="govuk-button {{ additional_classes | default('') }}" data-module="govuk-button" {{ additional_attributes | default('') }}>
+        {{ button_text }}
+    </button>
+{% endif %}
+
+{# Usage
+{% set button_text = 'Save and continue' %}
+{% set button_type = 'submit' %} (Optional)
+{% set additional_classes = 'govuk-button--secondary' %} (Optional)
+{% set additional_attributes = 'data-tracking="save-and-continue"' %} (Optional)
+
+{% include 'partial/gds/button.twig' with { 
+    'button_text': button_text, 
+    'button_type': button_type, 
+    'additional_classes': additional_classes, 
+    'additional_attributes': additional_attributes 
+} %}
+#}

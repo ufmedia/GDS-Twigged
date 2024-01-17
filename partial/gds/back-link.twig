@@ -1,0 +1,12 @@
+{% if link_url is defined and link_text is defined %}
+    <a href="{{ link_url }}" class="govuk-back-link">
+        {{ link_text }}
+    </a>
+{% endif %}
+
+{# Usage 
+{% set link_url = '/previous-page' %}
+{% set link_text = 'Back' %}
+
+{% include 'partial/gds/back_link.twig' with { 'link_url': link_url, 'link_text': link_text } %}
+#}

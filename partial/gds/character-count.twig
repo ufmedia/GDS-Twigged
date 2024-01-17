@@ -1,0 +1,40 @@
+{% if textarea_id is defined and textarea_name is defined and label is defined %}
+    <div class="govuk-character-count" data-module="govuk-character-count" data-maxlength="{{ maxlength | default(200) }}">
+        <div class="govuk-form-group">
+            <h1 class="govuk-label-wrapper">
+                <label class="govuk-label govuk-label--l" for="{{ textarea_id }}">
+                    {{ label }}
+                </label>
+            </h1>
+            {% if hint is defined %}
+                <div id="{{ textarea_id }}-hint" class="govuk-hint">
+                    {{ hint }}
+                </div>
+            {% endif %}
+            <textarea class="govuk-textarea govuk-js-character-count" id="{{ textarea_id }}" name="{{ textarea_name }}" rows="{{ rows | default(5) }}" aria-describedby="{{ textarea_id }}-info {{ hint is defined ? textarea_id ~ '-hint' : '' }}"></textarea>
+        </div>
+        <div id="{{ textarea_id }}-info" class="govuk-hint govuk-character-count__message">
+            {{ char_count_message | default('You can enter up to ' ~ (maxlength | default(200)) ~ ' characters') }}
+        </div>
+    </div>
+{% endif %}
+
+{# Usage
+{% set textarea_id = 'with-hint' %}
+{% set textarea_name = 'withHint' %}
+{% set label = 'Can you provide more detail?' %}
+{% set hint = 'Do not include personal or financial information like your National Insurance number or credit card details.' %}
+{% set maxlength = 200 %}
+{% set rows = 5 %}
+{% set char_count_message = 'You can enter up to ' ~ maxlength ~ ' characters' %}
+
+{% include 'partial/gds/character-count.twig' with { 
+    'textarea_id': textarea_id,
+    'textarea_name': textarea_name,
+    'label': label,
+    'hint': hint,
+    'maxlength': maxlength,
+    'rows': rows,
+    'char_count_message': char_count_message
+} %}
+#}

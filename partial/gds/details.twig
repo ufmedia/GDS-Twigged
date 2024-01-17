@@ -1,0 +1,23 @@
+{% if summary_text is defined and details_text is defined %}
+    <details class="govuk-details">
+        <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+                {{ summary_text }}
+            </span>
+        </summary>
+        <div class="govuk-details__text">
+            {{ details_text }}
+        </div>
+    </details>
+{% endif %}
+
+
+{# Usage
+{% set summary_text = 'Help with nationality' %}
+{% set details_text = 'We need to know your nationality so we can work out which elections you’re entitled to vote in. If you cannot provide your nationality, you’ll have to send copies of identity documents through the post.' %}
+
+{% include 'partial/gds/details.twig' with { 
+    'summary_text': summary_text,
+    'details_text': details_text
+} %}
+#}

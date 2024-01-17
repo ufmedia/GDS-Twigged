@@ -1,0 +1,20 @@
+{% if instruction_text is defined and skip_link_text is defined and skip_link_url is defined %}
+    <p class="govuk-body">
+        {{ instruction_text }}
+    </p>
+    <a href="{{ skip_link_url }}" class="govuk-skip-link" data-module="govuk-skip-link">
+        {{ skip_link_text }}
+    </a>
+{% endif %}
+
+{# Usage
+{% set instruction_text = 'To view the skip link component tab to this example, or click inside this example and press tab.' %}
+{% set skip_link_text = 'Skip to main content' %}
+{% set skip_link_url = '#main-content' %}
+
+{% include 'partial/gds/skip-link.twig' with { 
+    'instruction_text': instruction_text,
+    'skip_link_text': skip_link_text,
+    'skip_link_url': skip_link_url
+} %}
+#}

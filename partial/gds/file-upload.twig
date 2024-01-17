@@ -1,0 +1,20 @@
+{% if label is defined and input_id is defined and input_name is defined %}
+    <div class="govuk-form-group">
+        <label class="govuk-label" for="{{ input_id }}">
+            {{ label }}
+        </label>
+        <input class="govuk-file-upload" id="{{ input_id }}" name="{{ input_name }}" type="file">
+    </div>
+{% endif %}
+
+{# Usage
+{% set label = 'Upload a file' %}
+{% set input_id = 'file-upload-1' %}
+{% set input_name = 'fileUpload1' %}
+
+{% include 'partial/gds/file-upload.twig' with { 
+    'label': label,
+    'input_id': input_id,
+    'input_name': input_name
+} %}
+#}

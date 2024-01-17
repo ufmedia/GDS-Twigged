@@ -1,0 +1,15 @@
+<div class="govuk-warning-text">
+    <span class="govuk-warning-text__icon" aria-hidden="true">{{ icon }}</span>
+    <strong class="govuk-warning-text__text">
+        <span class="govuk-visually-hidden">{{ visuallyHiddenText }}</span>
+        {{ message }}
+    </strong>
+</div>
+
+{# Usage 
+{% include 'partial/gds/warning-message.twig' with { 
+    'icon': '!',
+    'visuallyHiddenText': 'Warning',
+    'message': 'You can be fined up to £5,000 if you do not register.'
+} %}
+#}

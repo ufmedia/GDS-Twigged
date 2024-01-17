@@ -1,0 +1,68 @@
+<ul class="govuk-task-list">
+    {% for task in tasks %}
+    <li class="govuk-task-list__item govuk-task-list__item--with-link">
+        <div class="govuk-task-list__name-and-hint">
+            <a class="govuk-link govuk-task-list__link" href="{{ task.link }}" aria-describedby="{{ task.statusId }}">
+                {{ task.name }}
+            </a>
+            {% if task.hint is defined %}
+                <div id="{{ task.hintId }}" class="govuk-task-list__hint">
+                    {{ task.hint }}
+                </div>
+            {% endif %}
+        </div>
+        <div class="govuk-task-list__status" id="{{ task.statusId }}">
+            {{ task.status }}
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+
+{# Usage
+{% set tasks = [
+    {
+        'name': 'Company Directors',
+        'link': '#',
+        'statusId': 'company-details-1-status',
+        'hint': null,
+        'hintId': null,
+        'status': 'Completed'
+    },
+    {
+        'name': 'Registered company details',
+        'link': '#',
+        'statusId': 'company-details-2-status',
+        'hint': null,
+        'hintId': null,
+        'status': '<strong class="govuk-tag govuk-tag--blue">Incomplete</strong>'
+    },
+    {
+        'name': 'Financial history',
+        'link': '#',
+        'statusId': 'company-details-3-status',
+        'hint': 'Include 5 years of the company’s relevant financial information.',
+        'hintId': 'company-details-3-hint',
+        'status': '<strong class="govuk-tag govuk-tag--blue">Incomplete</strong>'
+    },
+    {
+        'name': 'Business plan',
+        'link': '#',
+        'statusId': 'company-details-4-status',
+        'hint': null,
+        'hintId': null,
+        'status': '<strong class="govuk-tag govuk-tag--blue">Incomplete</strong>'
+    },
+    {
+        'name': 'References',
+        'link': '#',
+        'statusId': 'company-details-5-status',
+        'hint': null,
+        'hintId': null,
+        'status': '<strong class="govuk-tag govuk-tag--blue">Incomplete</strong>'
+    }
+] %}
+
+{% include 'partial/gds/task-list.twig' with { 
+    'tasks': tasks
+} %}
+#}

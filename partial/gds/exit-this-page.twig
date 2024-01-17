@@ -1,0 +1,20 @@
+{% if exit_url is defined %}
+    <div class="govuk-exit-this-page" data-module="govuk-exit-this-page">
+        <a href="{{ exit_url }}" role="button" draggable="false" class="govuk-button govuk-button--warning govuk-exit-this-page__button govuk-js-exit-this-page-button" data-module="govuk-button" rel="nofollow noreferrer">
+            {% if hidden_text is defined %}
+                <span class="govuk-visually-hidden">{{ hidden_text }}</span>
+            {% endif %}
+            Exit this page
+        </a>
+    </div>
+{% endif %}
+
+{# Usage
+{% set exit_url = 'https://www.bbc.co.uk/weather' %}
+{% set hidden_text = 'Emergency' %} (Optional)
+
+{% include 'partial/gds/exit-this-page.twig' with { 
+    'exit_url': exit_url,
+    'hidden_text': hidden_text 
+} %}
+#}

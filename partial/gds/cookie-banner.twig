@@ -1,0 +1,40 @@
+{% if service_name is defined %}
+    <div class="govuk-cookie-banner" data-nosnippet role="region" aria-label="Cookies on {{ service_name }}">
+        <div class="govuk-cookie-banner__message govuk-width-container">
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds">
+                    <h2 class="govuk-cookie-banner__heading govuk-heading-m">Cookies on {{ service_name }}</h2>
+                    <div class="govuk-cookie-banner__content">
+                        {% for message in messages %}
+                            <p class="govuk-body">{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="govuk-button-group">
+                <button type="button" class="govuk-button" data-module="govuk-button">
+                    Accept analytics cookies
+                </button>
+                <button type="button" class="govuk-button" data-module="govuk-button">
+                    Reject analytics cookies
+                </button>
+                <a class="govuk-link" href="{{ cookies_link_url | default('#') }}">View cookies</a>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{# Usage
+{% set service_name = 'Your Service Name' %}
+{% set messages = [
+    'We use some essential cookies to make this service work.',
+    'We’d also like to use analytics cookies so we can understand how you use the service and make improvements.'
+] %}
+{% set cookies_link_url = '/cookie-details' %}
+
+{% include 'partial/gds/cookie-banner.twig' with { 
+    'service_name': service_name,
+    'messages': messages,
+    'cookies_link_url': cookies_link_url
+} %}
+#}

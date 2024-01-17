@@ -1,0 +1,46 @@
+{% if fieldset_id is defined and fieldset_legend is defined %}
+    <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" role="group" aria-describedby="{{ fieldset_id }}-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                <h1 class="govuk-fieldset__heading">
+                    {{ fieldset_legend }}
+                </h1>
+            </legend>
+            {% if hint is defined %}
+                <div id="{{ fieldset_id }}-hint" class="govuk-hint">
+                    {{ hint }}
+                </div>
+            {% endif %}
+            <div class="govuk-date-input" id="{{ fieldset_id }}">
+                {% for date_part in date_parts %}
+                    <div class="govuk-date-input__item">
+                        <div class="govuk-form-group">
+                            <label class="govuk-label govuk-date-input__label" for="{{ fieldset_id }}-{{ date_part.name }}">
+                                {{ date_part.label }}
+                            </label>
+                            <input class="govuk-input govuk-date-input__input {{ date_part.width_class }}" id="{{ fieldset_id }}-{{ date_part.name }}" name="{{ fieldset_id }}-{{ date_part.name }}" type="text" inputmode="numeric">
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </fieldset>
+    </div>
+{% endif %}
+
+{# Usage
+{% set fieldset_id = 'passport-issued' %}
+{% set fieldset_legend = 'When was your passport issued?' %}
+{% set hint = 'For example, 27 3 2007' %}
+{% set date_parts = [
+    { name: 'day', label: 'Day', width_class: 'govuk-input--width-2' },
+    { name: 'month', label: 'Month', width_class: 'govuk-input--width-2' },
+    { name: 'year', label: 'Year', width_class: 'govuk-input--width-4' }
+] %}
+
+{% include 'partial/gds/date-input.twig' with { 
+    'fieldset_id': fieldset_id,
+    'fieldset_legend': fieldset_legend,
+    'hint': hint,
+    'date_parts': date_parts
+} %}
+#}

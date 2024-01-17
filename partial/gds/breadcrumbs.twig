@@ -1,0 +1,29 @@
+{% if breadcrumbs is defined and breadcrumbs is not empty %}
+    <div class="govuk-breadcrumbs">
+        <ol class="govuk-breadcrumbs__list">
+            {% for breadcrumb in breadcrumbs %}
+                <li class="govuk-breadcrumbs__list-item">
+                    {% if loop.last %}
+                        <span class="govuk-breadcrumbs__link">
+                            {{ breadcrumb.name }}
+                        </span>
+                    {% else %}
+                        <a class="govuk-breadcrumbs__link" href="{{ breadcrumb.link }}">
+                            {{ breadcrumb.name }}
+                        </a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ol>
+    </div>
+{% endif %}
+
+{# Usage
+{% set breadcrumbs = [
+    { name: 'Home', link: '/home' },
+    { name: 'Passports, travel and living abroad', link: '/passports-travel-living-abroad' },
+    { name: 'Travel abroad', link: '/travel-abroad' } 
+] %}
+
+{% include 'partial/gds/breadcrumbs.twig' with { 'breadcrumbs': breadcrumbs } %}
+#}

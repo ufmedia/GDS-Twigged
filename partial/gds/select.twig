@@ -1,0 +1,33 @@
+{% if label is defined and select_id is defined and select_name is defined and options is defined and options is not empty %}
+    <div class="govuk-form-group">
+        <label class="govuk-label" for="{{ select_id }}">
+            {{ label }}
+        </label>
+        <select class="govuk-select" id="{{ select_id }}" name="{{ select_name }}">
+            {% for option in options %}
+                <option value="{{ option.value }}" {{ option.selected ? 'selected' : '' }}>
+                    {{ option.text }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+{% endif %}
+
+{# Usage
+{% set label = 'Sort by' %}
+{% set select_id = 'sort' %}
+{% set select_name = 'sort' %}
+{% set options = [
+    { value: 'published', text: 'Recently published', selected: false },
+    { value: 'updated', text: 'Recently updated', selected: true },
+    { value: 'views', text: 'Most views', selected: false },
+    { value: 'comments', text: 'Most comments', selected: false }
+] %}
+
+{% include 'partial/gds/select.twig' with { 
+    'label': label,
+    'select_id': select_id,
+    'select_name': select_name,
+    'options': options
+} %}
+#}

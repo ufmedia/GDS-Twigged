@@ -1,0 +1,71 @@
+{% if details_list is defined and details_list is not empty %}
+    <dl class="govuk-summary-list">
+        {% for item in details_list %}
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    {{ item.key }}
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    {{ item.value | raw }}
+                </dd>
+                {% if item.actions is defined %}
+                    <dd class="govuk-summary-list__actions">
+                        {% if item.actions is iterable %}
+                            <ul class="govuk-summary-list__actions-list">
+                                {% for action in item.actions %}
+                                    <li class="govuk-summary-list__actions-list-item">
+                                        <a class="govuk-link" href="{{ action.url }}">
+                                            {{ action.text }}
+                                            <span class="govuk-visually-hidden">
+                                                {{ action.hidden_text }}
+                                            </span>
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <a class="govuk-link" href="{{ item.actions.url }}">
+                                {{ item.actions.text }}
+                                <span class="govuk-visually-hidden">
+                                    {{ item.actions.hidden_text }}
+                                </span>
+                            </a>
+                        {% endif %}
+                    </dd>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </dl>
+{% endif %}
+
+{# Usage
+{% set details_list = [
+    {
+        key: 'Name',
+        value: 'Sarah Philips',
+        actions: { url: '#', text: 'Change', hidden_text: ' name' }
+    },
+    {
+        key: 'Date of birth',
+        value: '5 January 1978',
+        actions: { url: '#', text: 'Change', hidden_text: ' date of birth' }
+    },
+    {
+        key: 'Address',
+        value: '72 Guild Street<br>London<br>SE23 6FH',
+        actions: { url: '#', text: 'Change', hidden_text: ' address' }
+    },
+    {
+        key: 'Contact details',
+        value: '<p class="govuk-body">07700 900457</p><p class="govuk-body">sarah.phillips@example.com</p>',
+        actions: [
+            { url: '#', text: 'Add', hidden_text: ' contact details' },
+            { url: '#', text: 'Change', hidden_text: ' contact details' }
+        ]
+    }
+] %}
+
+{% include 'partial/gds/summary-list.twig' with { 
+    'details_list': details_list
+} %}
+#}

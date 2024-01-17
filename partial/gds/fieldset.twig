@@ -1,0 +1,29 @@
+<fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+        <h1 class="govuk-fieldset__heading">
+            {{ legend | default('What is your address?') }}
+        </h1>
+    </legend>
+    {% for input in inputs %}
+        <div class="govuk-form-group">
+            <label class="govuk-label" for="{{ input.id }}">
+                {{ input.label }}
+            </label>
+            <input class="govuk-input {{ input.classes | default('') }}" id="{{ input.id }}" name="{{ input.name }}" type="text" autocomplete="{{ input.autocomplete }}" {% if input.optional is defined and input.optional %}optional{% endif %}>
+        </div>
+    {% endfor %}
+</fieldset>
+
+{# Usage
+{% set inputs = [
+    { label: 'Address line 1', id: 'address-line-1', name: 'addressLine1', autocomplete: 'address-line1' },
+    { label: 'Address line 2 (optional)', id: 'address-line-2', name: 'addressLine2', autocomplete: 'address-line2', optional: true },
+    { label: 'Town or city', id: 'address-town', name: 'addressTown', autocomplete: 'address-level2', classes: 'govuk-!-width-two-thirds' },
+    { label: 'Postcode', id: 'address-postcode', name: 'addressPostcode', autocomplete: 'postal-code', classes: 'govuk-input--width-10' }
+] %}
+
+{% include 'partial/gds/fieldset.twig' with { 
+    'legend': 'What is your address?',
+    'inputs': inputs
+} %}
+#}

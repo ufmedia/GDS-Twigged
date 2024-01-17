@@ -1,0 +1,17 @@
+<div class="govuk-form-group">
+    <h1 class="govuk-label-wrapper">
+        <label class="govuk-label govuk-label--l" for="{{ inputId }}">
+            {{ label }}
+        </label>
+    </h1>
+    <input class="govuk-input" id="{{ inputId }}" name="{{ inputName }}" type="{{ inputType }}">
+</div>
+
+{# Usage
+{% include 'partial/gds/text-input.twig' with { 
+    'inputId': 'event-name',
+    'label': 'What is the name of the event?',
+    'inputName': 'eventName',
+    'inputType': 'text'
+} %}
+#}

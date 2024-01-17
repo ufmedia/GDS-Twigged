@@ -1,0 +1,22 @@
+{% if title is defined and body_text is defined and reference_number is defined %}
+    <div class="govuk-panel govuk-panel--confirmation">
+        <h1 class="govuk-panel__title">
+            {{ title }}
+        </h1>
+        <div class="govuk-panel__body">
+            {{ body_text }}<br><strong>{{ reference_number }}</strong>
+        </div>
+    </div>
+{% endif %}
+
+{# Usage
+{% set title = 'Application complete' %}
+{% set body_text = 'Your reference number' %}
+{% set reference_number = 'HDJ2123F' %}
+
+{% include 'partial/gds/panel.twig' with { 
+    'title': title,
+    'body_text': body_text,
+    'reference_number': reference_number
+} %}
+#}
