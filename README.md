@@ -19,3 +19,4 @@ Each component is available as a separate Twig template and can be customized by
 
 There's not much to this repo as it's intended to compliment an existing Twig project such as [DockPress](https://github.com/ufmedia/DockPress) (shameless plug), as such it's easier to download the [latest release](https://github.com/ufmedia/GDS-Twigged/releases/latest) and extract the twig files to where they're needed. Of course you can clone the repo if you prefer, just rember to remove the remote or scrub the .git dir.
 
+<strong>Don't forget to [include the GDS javascript and css](https://frontend.design-system.service.gov.uk/installing-with-npm/#requirements) in your project.</strong>
